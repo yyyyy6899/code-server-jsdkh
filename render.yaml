@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: code-server
+    runtime: docker
+    plan: starter # or free
+    env:
+      - key: PUID
+        value: 1000
+      - key: PGID
+        value: 1000
+      - key: TZ
+        value: Etc/UTC
+      - key: PASSWORD
+        generateValue: true # Render will generate a secure password
+      - key: SUDO_PASSWORD
+        generateValue: true
+      - key: DEFAULT_WORKSPACE
+        value: /config/workspace
+      - key: PWA_APPNAME
+        value: code-server
+    disk:
+      name: code-server-data
+      mountPath: /config
+      sizeGB: 10
